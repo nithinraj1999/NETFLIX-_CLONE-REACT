@@ -1,24 +1,22 @@
-// store/Context.js
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../firebase';
 
-const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-      setUser(userAuth);
-    });
-    return unsubscribe;
-  }, []);
 
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      {children}
-    </UserContext.Provider>
-  );
-};
+import { createContext,useState } from 'react';
+import firebase from '../firebase';
 
-export const useUser = () => useContext(UserContext);
+
+export const FirebaseContext = createContext(null)
+export const AuthContext = createContext(null)
+
+export default function Context({children}){
+    const [user,setUser] = useState(null)
+
+    return(
+    <FirebaseContext.Provider value={{ firebase: firebase }}>
+        <AuthContext.Provider value={{ user, setUser }}>
+            {children}
+        </AuthContext.Provider>
+    </FirebaseContext.Provider>
+    )
+}

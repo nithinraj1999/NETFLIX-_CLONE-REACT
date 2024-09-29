@@ -48,8 +48,8 @@
   z-index:1;
   color:#ffffff;
   padding:20px;
-  left:0;
-  right:0;
+   left:0;
+  right:0; 
 }
 
 .loginScreen__body > h1{
@@ -73,7 +73,8 @@
   padding:10px;
   outline-width: 0;
   height: 30px;
-  width:30%;
+  width:15%;
+  margin-left: 10px;
   border:none;
   max-width:600px;
 }
